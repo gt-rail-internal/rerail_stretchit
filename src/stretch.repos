@@ -1,0 +1,5 @@
+repositories:
+  stretch_ros:
+    type: git
+    url: https://github.com/hello-robot/stretch_ros.git
+    version: noetic
