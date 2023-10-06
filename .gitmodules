@@ -1,3 +1,6 @@
 [submodule "stretch_ros"]
 	path = src/stretch_ros
 	url = https://github.com/hello-robot/stretch_ros/tree/noetic
+[submodule "src/rerail_stretchit_grasp"]
+	path = src/rerail_stretchit_grasp
+	url = https://github.com/gt-rail-internal/rerail_stretchit_grasp.git
