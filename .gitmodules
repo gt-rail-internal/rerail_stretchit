@@ -4,3 +4,6 @@
 [submodule "src/rerail_stretchit_grasp"]
 	path = src/rerail_stretchit_grasp
 	url = https://github.com/gt-rail-internal/rerail_stretchit_grasp.git
+[submodule "rerail_stretchit_task_execution"]
+	path = src/rerail_stretchit_task_execution
+	url = https://github.com/gt-rail-internal/rerail_stretchit_task_execution
