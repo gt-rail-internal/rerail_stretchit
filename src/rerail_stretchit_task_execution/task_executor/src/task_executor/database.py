@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # A service server that gives access to different data as needed
 import rospy
 
@@ -47,7 +47,7 @@ class DatabaseServer(object):
     def _validate_waypoints(self, wp_defs):
         # Reload the waypoints
         waypoints = {}
-        for name, wp_def in wp_defs.iteritems():
+        for name, wp_def in wp_defs.items():
             waypoints[name] = [Waypoint(**x) for x in wp_def]
 
         return waypoints

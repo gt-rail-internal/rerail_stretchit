@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # The node for the action server that executes the task plan
-
 import rospy
 
-from task_executor.server import TaskServer
+from task_executor.database import DatabaseServer
 
 
 def main():
-    rospy.init_node('task_executor')
-    server = TaskServer()
+    rospy.init_node('database')
+    server = DatabaseServer()
     server.start()
     rospy.spin()
 

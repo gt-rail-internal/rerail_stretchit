@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import rospy
 # Import any necessary libraries or modules specific to the Stretch robot
 

@@ -1,7 +1,8 @@
 tasks:
   waypoint_navigation:
-    description: "Navigate to a specified waypoint"
-    actions:
-      - action: navigate_to_waypoint
-        parameters:
-          waypoint: "desired_waypoint_name"
+    params:
+    - move_location
+    steps:
+    - action: navigate_to_waypoint
+      params:
+        location: { x: 1, y: 1, theta: 1.57, frame: "map" }
