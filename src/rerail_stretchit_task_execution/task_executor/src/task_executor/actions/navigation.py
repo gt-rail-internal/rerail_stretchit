@@ -1,5 +1,4 @@
-from math import sin, cos
-
+#!/usr/bin/env python3
 import rospy
 import actionlib
 
@@ -11,7 +10,7 @@ from task_execution_msgs.srv import GetWaypoints
 class Navigation(AbstractStep):
     MOVE_ACTION_SERVER = "/move_base"
     WAYPOINTS_SERVICE_NAME = "/database/waypoints"
-    #SEMANTIC_LOCATIONS_SERVICE_NAME = "/database/semantic_locations"
+    # SEMANTIC_LOCATIONS_SERVICE_NAME = "/database/semantic_locations"
     # BELIEF_KEYS = [x for x in dir(BeliefKeys) if x.isupper()]
         
     def init(self, name):

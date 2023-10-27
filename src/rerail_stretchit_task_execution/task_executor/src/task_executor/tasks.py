@@ -110,6 +110,7 @@ class Task(AbstractStep):
     """
 
     def init(self, name, tasks, actions, steps, params=[], var=[], **kwargs):
+        print("TASK init")
         """
         The initialization of the task's actions, and thereby its connections to
         the ROS system
