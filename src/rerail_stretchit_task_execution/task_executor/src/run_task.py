@@ -8,6 +8,7 @@ import sys
 import json
 import pickle
 import argparse
+import base64
 
 from ruamel.yaml import YAML
 
@@ -62,12 +63,12 @@ def main():
     def convert_params(d):
         new_d = {}
         for k, v in d.items():
-            # if isinstance(k, str):
-            #     k = k.encode('utf-8')
+            if isinstance(k, bytes):
+                k = str(k)
             new_d[k] = v
 
-            # if isinstance(v, str):
-            #     new_d[k] = v
+            if isinstance(v, bytes):
+                new_d[k] = str(v)
             if isinstance(v, dict):
                 new_d[k] = convert_params(v)
 
@@ -78,7 +79,7 @@ def main():
 
     goal = ExecuteGoal(
         name=args.task_name,
-        params=pickle.dumps(params),
+        params=base64.b64encode(pickle.dumps(params)).decode('ascii'),
         no_recoveries=args.no_recoveries
     )
     client.send_goal(goal)
@@ -86,7 +87,7 @@ def main():
 
     status = client.get_state()
     result = client.get_result()
-    variables = (pickle.loads(result.variables) if result.variables != '' else {})
+    variables = (pickle.loads(base64.b64decode(result.variables)) if result.variables != '' else {})
     rospy.loginfo("Result: {}. Variables:\n{}".format(
         _goal_status_from_code(status),
         Task.pprint_variables(variables)

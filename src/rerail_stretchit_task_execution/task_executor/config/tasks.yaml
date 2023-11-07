@@ -3,6 +3,6 @@ tasks:
     params:
     - move_location
     steps:
-    - action: navigate_to_waypoint
+    - action: move
       params:
-        location: move_location
+        location: params.move_location

@@ -196,10 +196,10 @@ class Task(AbstractStep):
                 for name, value in step.get('params', {}).items()
             }
             variables = {}
-
+            print(step)
             # First check to see if this a loop or choice. If so, update
             # defs accordingly. current_step_def remains unchanged here
-            if step.has_key('loop'):
+            if 'loop' in step:
                 condition = step_params['condition']
                 condition, condition_str = self._resolve_condition(condition, var, params)
                 rospy.loginfo("Loop {}: {} -> {}".format(step_name, condition_str, condition))
@@ -215,7 +215,7 @@ class Task(AbstractStep):
                     name: self._resolve_param(value, var, params)
                     for name, value in step.get('params', {}).items()
                 }
-            elif step.has_key('choice'):
+            elif 'choice' in step:
                 condition = step_params['condition']
                 condition, condition_str = self._resolve_condition(condition, var, params)
                 rospy.loginfo("Choice {}: {} -> {}".format(step_name, condition_str, condition))
@@ -240,7 +240,7 @@ class Task(AbstractStep):
                 }
 
             # Check to see if this is an op. If so, run the op
-            if step.has_key('op'):
+            if 'op' in step:
                 self.current_executor = None
                 variables = getattr(ops, step['op'])(
                     current_variables=var,
@@ -251,7 +251,7 @@ class Task(AbstractStep):
             # Otherwise, execute the action/task:
             else:
                 # Then, set the appropriate executor
-                if step.has_key('action'):
+                if 'action' in step:
                     self.current_executor = self.actions[step['action']]
                 else:  # step.has_key('task')
                     # Create the child task context
@@ -465,7 +465,7 @@ class Task(AbstractStep):
             for k, v in variables.items():
                 if isinstance(v, (list, tuple, dict,)):
                     pp_var[k] = Task.pprint_variables(v)
-                elif isinstance(v, (bool, int, long, float, str, unicode)):
+                elif isinstance(v, (bool, int, float, str)):
                     pp_var[k] = v
                 else:
                     pp_var[k] = type(v)
@@ -475,7 +475,7 @@ class Task(AbstractStep):
             for x in variables:
                 if isinstance(x, (list, tuple, dict,)):
                     pp_var.append(Task.pprint_variables(x))
-                elif isinstance(x, (bool, int, long, float, str, unicode)):
+                elif isinstance(x, (bool, int, float, str)):
                     pp_var.append(x)
                 else:
                     pp_var.append(type(x))

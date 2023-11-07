@@ -5,6 +5,7 @@ import pickle
 
 import rospy
 import actionlib
+import base64
 
 #from task_executor.abstract_step import AbstractStep
 from task_executor.actions import get_default_actions
@@ -107,7 +108,7 @@ class TaskServer(object):
             return
 
         # Fetch the params from the goal
-        params = (pickle.loads(goal.params) if goal.params != '' else {})
+        params = (pickle.loads(base64.b64decode(goal.params))if goal.params != '' else {})
         if not isinstance(params, dict):
             rospy.logerr("Task {}: UNRECOGNIZED params - {}".format(goal.name, params))
             self._server.set_aborted(result)
@@ -260,7 +261,7 @@ class TaskServer(object):
 
         # Otherwise, signal complete
         result.success = True
-        result.variables = pickle.dumps(variables)
+        result.variables = base64.b64encode(pickle.dumps(variables)).decode('ascii')
         rospy.loginfo("Task {}: SUCCESS.".format(task.name))
         self._server.set_succeeded(result)
 
