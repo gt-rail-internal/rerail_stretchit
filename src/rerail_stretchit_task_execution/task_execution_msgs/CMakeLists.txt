@@ -61,6 +61,7 @@ add_message_files(
   MonitorMetadata.msg
   BeliefMetadata.msg
   BeliefKeys.msg
+  Statistics.msg
   # Database
   Waypoint.msg
 
@@ -76,6 +77,7 @@ add_action_files(
   # Task Execution
   Execute.action
   Navigation.action
+  RequestAssistance.action
 
 )
 

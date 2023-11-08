@@ -106,7 +106,8 @@ class Navigation(AbstractStep):
 
     
     def stop(self):
-        print("Stop Nav Service")
+        self._navigation_client.cancel_goal()
+        self.notify_action_cancel(Navigation.MOVE_ACTION_SERVER)
 
     def _parse_location(self, location):
         coords = None

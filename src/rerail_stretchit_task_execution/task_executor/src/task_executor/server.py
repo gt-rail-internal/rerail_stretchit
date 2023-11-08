@@ -12,7 +12,7 @@ from task_executor.actions import get_default_actions
 from task_executor.tasks import Task, TaskContext
 
 from actionlib_msgs.msg import GoalID, GoalStatus
-from task_execution_msgs.msg import (ExecuteAction)
+from task_execution_msgs.msg import (ExecuteAction, RequestAssistanceAction, RequestAssistanceGoal, RequestAssistanceResult)
 from std_srvs.srv import Trigger, TriggerResponse
 
 
@@ -46,15 +46,15 @@ class TaskServer(object):
         self._reload_service = rospy.Service('~reload', Trigger, self.reload)
         self.reload(None)
 
-        # Connect to the arbitrator only if needed
-        # if connect_monitor:
-        #     # Instantiate a connection to the arbitration server
-        #     self._monitor_client = actionlib.SimpleActionClient(
-        #         TaskServer.TASK_MONITOR_ACTION_SERVER,
-        #         RequestAssistanceAction
-        #     )
-        # else:
-        #     self._monitor_client = None
+        #Connect to the arbitrator only if needed
+        if connect_monitor:
+            # Instantiate a connection to the arbitration server
+            self._monitor_client = actionlib.SimpleActionClient(
+                TaskServer.TASK_MONITOR_ACTION_SERVER,
+                RequestAssistanceAction
+            )
+        else:
+            self._monitor_client = None
 
         # Instantiate the action server
         self._server = actionlib.SimpleActionServer(
@@ -65,10 +65,10 @@ class TaskServer(object):
         )
 
     def start(self):
-        # if self._monitor_client is not None:
-        #     rospy.loginfo("Connecting to assistance arbitrator...")
-        #     self._monitor_client.wait_for_server()
-        #     rospy.loginfo("...assistance arbitrator connected")
+        if self._monitor_client is not None:
+            rospy.loginfo("Connecting to assistance arbitrator...")
+            self._monitor_client.wait_for_server()
+            rospy.loginfo("...assistance arbitrator connected")
 
         self._server.start()
         rospy.loginfo("Executor node ready...")
@@ -77,7 +77,6 @@ class TaskServer(object):
     def reload(self, req):
         # Get the task configs
         tasks_config = self._validate_tasks(rospy.get_param('~tasks'))
-        print(tasks_config)
         self.tasks = { key: Task() for key, _ in tasks_config.items() }
 
         # Instantiate the registry of actions
@@ -149,7 +148,7 @@ class TaskServer(object):
                     rospy.logwarn("Task {}: PREEMPTED. Context: {}".format(
                         task.name, Task.pprint_variables(variables)
                     ))
-                    result.variables = pickle.dumps(variables)
+                    result.variables = base64.b64encode(pickle.dumps(variables)).decode('ascii')
                     self._server.set_preempted(result)
                     return
 
@@ -158,7 +157,7 @@ class TaskServer(object):
                     rospy.logerr("Task {}: FAIL. Context: {}".format(
                         task.name, Task.pprint_variables(variables)
                     ))
-                    #request_assistance = True
+                    request_assistance = True
 
             except Exception as e:
                 # There was some unexpected error in the underlying code.
@@ -167,7 +166,7 @@ class TaskServer(object):
                 task.notify_aborted()
                 variables = task.get_executor_context()
                 variables['exception'] = e
-                #request_assistance = True
+                request_assistance = True
 
             # If the task is about to fail, print out the context of the failure
             # for debugging purposes
@@ -182,71 +181,71 @@ class TaskServer(object):
                 )
 
             # The value of request assistance depends on the arbitration client
-            # if request_assistance and (self._monitor_client is None or goal.no_recoveries):
-            #     request_assistance = False
+            if request_assistance and (self._monitor_client is None or goal.no_recoveries):
+                request_assistance = False
 
-            # # The request assistance portion of the while loop
-            # if request_assistance:
-            #     # Create the assistance goal
-            #     assistance_goal = RequestAssistanceGoal(stamp=rospy.Time.now())
-            #     executor = task.get_executor()
-            #     assistance_goal.component = executor.name
-            #     assistance_goal.component_status = executor.status
-            #     assistance_goal.priority = RequestAssistanceGoal.PRIORITY_NORMAL
-            #     assistance_goal.context = pickle.dumps(variables)
+            # The request assistance portion of the while loop
+            if request_assistance:
+                # Create the assistance goal
+                assistance_goal = RequestAssistanceGoal(stamp=rospy.Time.now())
+                executor = task.get_executor()
+                assistance_goal.component = executor.name
+                assistance_goal.component_status = executor.status
+                assistance_goal.priority = RequestAssistanceGoal.PRIORITY_NORMAL
+                assistance_goal.context = base64.b64encode(pickle.dumps(variables)).decode('ascii')
 
-            #     # Send the goal and wait. Preempt if a preempt request has also
-            #     # appeared
-            #     self._monitor_client.send_goal(assistance_goal)
-            #     while not self._monitor_client.wait_for_result(rospy.Duration(0.5)):
-            #         if self._server.is_preempt_requested():
-            #             self._monitor_client.cancel_goal()
+                # Send the goal and wait. Preempt if a preempt request has also
+                # appeared
+                self._monitor_client.send_goal(assistance_goal)
+                while not self._monitor_client.wait_for_result(rospy.Duration(0.5)):
+                    if self._server.is_preempt_requested():
+                        self._monitor_client.cancel_goal()
 
-            #     # Get the result from the arbitration server and proceed
-            #     # accordingly
-            #     assist_status = self._monitor_client.get_state()
-            #     assist_result = self._monitor_client.get_result()
+                # Get the result from the arbitration server and proceed
+                # accordingly
+                assist_status = self._monitor_client.get_state()
+                assist_result = self._monitor_client.get_result()
 
-            #     if assist_status == GoalStatus.PREEMPTED:
-            #         rospy.logwarn("Assistance request PREEMPTED. Exiting.")
-            #         result.variables = assist_result.context
-            #         self._server.set_preempted(result)
-            #         return
-            #     elif assist_status != GoalStatus.SUCCEEDED:  # Most likely ABORTED
-            #         rospy.logerr("Assistance request ABORTED. Exiting.")
-            #         result.variables = assist_result.context
-            #         self._server.set_aborted(result)
-            #         return
-            #     else:  # GoalStatus.SUCCEEDED
-            #         # Assert that the resume hint in the context matches the
-            #         # resume_hint in the message. We assume that the monitor
-            #         # must set the new context, so an invalid unpickling error
-            #         # because of unset context is a valid error
-            #         assist_result.context = pickle.loads(assist_result.context)
-            #         if not (
-            #             assist_result.resume_hint == assist_result.context['resume_hint']
-            #             or (assist_result.resume_hint in [RequestAssistanceResult.RESUME_NEXT,
-            #                                               RequestAssistanceResult.RESUME_PREVIOUS]
-            #                 and assist_result['resume_hint'] == RequestAssistanceResult.RESUME_CONTINUE)
-            #         ):
-            #             rospy.logerr("Task {}: message hint of {} does not match context hint of {}".format(
-            #                 task.name,
-            #                 assist_result.resume_hint,
-            #                 assist_result.context['resume_hint']
-            #             ))
-            #             task.set_aborted(**assist_result.context)
-            #             break
+                if assist_status == GoalStatus.PREEMPTED:
+                    rospy.logwarn("Assistance request PREEMPTED. Exiting.")
+                    result.variables = assist_result.context
+                    self._server.set_preempted(result)
+                    return
+                elif assist_status != GoalStatus.SUCCEEDED:  # Most likely ABORTED
+                    rospy.logerr("Assistance request ABORTED. Exiting.")
+                    result.variables = assist_result.context
+                    self._server.set_aborted(result)
+                    return
+                else:  # GoalStatus.SUCCEEDED
+                    # Assert that the resume hint in the context matches the
+                    # resume_hint in the message. We assume that the monitor
+                    # must set the new context, so an invalid unpickling error
+                    # because of unset context is a valid error
+                    assist_result.context = pickle.loads(base64.b64decode(assist_result.context))
+                    if not (
+                        assist_result.resume_hint == assist_result.context['resume_hint']
+                        or (assist_result.resume_hint in [RequestAssistanceResult.RESUME_NEXT,
+                                                          RequestAssistanceResult.RESUME_PREVIOUS]
+                            and assist_result['resume_hint'] == RequestAssistanceResult.RESUME_CONTINUE)
+                    ):
+                        rospy.logerr("Task {}: message hint of {} does not match context hint of {}".format(
+                            task.name,
+                            assist_result.resume_hint,
+                            assist_result.context['resume_hint']
+                        ))
+                        task.set_aborted(**assist_result.context)
+                        break
 
-            #         rospy.loginfo("Assistance request COMPLETED. Resume Hint: {}"
-            #                       .format(assist_result.resume_hint))
-            #         if assist_result.resume_hint != RequestAssistanceResult.RESUME_NONE:
-            #             # Figure out the execution context of subtasks from the
-            #             # context dictionary that's returned
-            #             execution_context = TaskContext.create_from_dict(assist_result.context)
-            #         else:  # RequestAssistanceResult.RESUME_NONE
-            #             # Just prepare to exit
-            #             request_assistance = False
-            #             variables = task.set_aborted(**assist_result.context)
+                    rospy.loginfo("Assistance request COMPLETED. Resume Hint: {}"
+                                  .format(assist_result.resume_hint))
+                    if assist_result.resume_hint != RequestAssistanceResult.RESUME_NONE:
+                        # Figure out the execution context of subtasks from the
+                        # context dictionary that's returned
+                        execution_context = TaskContext.create_from_dict(assist_result.context)
+                    else:  # RequestAssistanceResult.RESUME_NONE
+                        # Just prepare to exit
+                        request_assistance = False
+                        variables = task.set_aborted(**assist_result.context)
 
             # End while
 
@@ -255,7 +254,7 @@ class TaskServer(object):
             rospy.logerr("Task {}: FAIL. Context: {}".format(
                 task.name, Task.pprint_variables(variables)
             ))
-            result.variables = pickle.dumps(variables)
+            result.variables = base64.b64encode(pickle.dumps(variables)).decode('ascii')
             self._server.set_aborted(result)
             return
 
