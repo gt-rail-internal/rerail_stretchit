@@ -11,7 +11,7 @@
   </node>
 
   <!-- The beliefs node -->
-  <!-- <node name="beliefs" pkg="task_executor" type="beliefs_node.py" /> -->
+  <node name="beliefs" pkg="task_executor" type="beliefs_node.py" />
 
   <!-- The task execution node -->
   <node name="task_executor" pkg="task_executor" type="task_node.py" output="screen">
@@ -19,7 +19,7 @@
   </node>
 
   <!-- The recovery execution node -->
-  <!-- <node name="recovery_executor" pkg="task_executor" type="recovery_task_node.py" output="screen">
+  <node name="recovery_executor" pkg="task_executor" type="recovery_task_node.py" output="screen">
     <rosparam command="load" file="$(arg task_config)" />
-  </node> -->
+  </node>
 </launch>

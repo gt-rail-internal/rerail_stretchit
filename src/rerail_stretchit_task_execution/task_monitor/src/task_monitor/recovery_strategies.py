@@ -11,6 +11,8 @@ import numpy as np
 
 import rospy
 
+import base64
+
 from actionlib_msgs.msg import GoalStatus
 from task_execution_msgs.msg import (RequestAssistanceResult, ExecuteGoal,
                                      BeliefKeys)
@@ -98,24 +100,30 @@ class RecoveryStrategies(object):
 
         # Get the number of times things have failed
         component_names, num_aborts = RecoveryStrategies.get_number_of_component_aborts(assistance_goal.context)
+        print(component_names, num_aborts)
+        
 
-        # NO COMPETITION: Check for the global recovery abort conditions
-        # if len(component_names) > 1 and \
-        #         num_aborts[-2] > RecoveryStrategies.MAX_PENULTIMATE_TASK_ABORTS:
-        #     rospy.loginfo("Recovery: task {} has failed more than {} times".format(
-        #         component_names[-2],
-        #         RecoveryStrategies.MAX_PENULTIMATE_TASK_ABORTS
-        #     ))
-        #     return execute_goal, resume_hint, resume_context
-        # elif num_aborts[0] > RecoveryStrategies.MAX_PRIMARY_TASK_ABORTS:
-        #     rospy.loginfo("Recovery: primary task {} has failed more than {} times".format(
-        #         component_names[0],
-        #         RecoveryStrategies.MAX_PRIMARY_TASK_ABORTS
-        #     ))
-        #     return execute_goal, resume_hint, resume_context
+        if (
+            assistance_goal.component == 'loop_body_test'
+            or assistance_goal.component == 'reposition_recovery_test'
+        ):
+            if assistance_goal.component == 'loop_body_test':
+                rospy.loginfo("Recovery: simply continue")
+                resume_hint = RequestAssistanceResult.RESUME_CONTINUE
+                resume_context = RecoveryStrategies.create_continue_result_context(assistance_goal.context)
 
-        # Then it's a giant lookup table. The first condition in the lookup
-        # table is for test tasks. Should NEVER be used during the main task
+            elif assistance_goal.component == 'reposition_recovery_test':
+                rospy.loginfo("Recovery: reposition the base")
+                location = RecoveryStrategies.get_last_goal_location(beliefs)
+                assert location is not None, "reposition back to an unknown goal location"
+                goal_params = {
+                    "origin_move_location": "waypoints.origin_for_" + location,
+                    "move_location": "waypoints." + location,
+                }
+                execute_goal = ExecuteGoal(
+                    name="reposition_recovery_task",
+                    params=base64.b64encode(pickle.dumps(goal_params)).decode('ascii')
+                )
         
         # Return the recovery options
         rospy.loginfo("Recovery:\ngoal: {}\nresume_hint: {}\ncontext: {}".format(

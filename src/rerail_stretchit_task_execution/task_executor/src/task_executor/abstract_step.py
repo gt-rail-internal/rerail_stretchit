@@ -9,6 +9,7 @@ import uuid
 import pickle
 
 import rospy
+import base64
 
 from actionlib_msgs.msg import GoalStatus
 from task_execution_msgs.msg import (ExecutionEvent, TaskStepMetadata,
@@ -251,7 +252,7 @@ class AbstractStep(object):
                 type=ExecutionEvent.BELIEF_EVENT,
                 belief_metadata=BeliefMetadata(
                     value=value,
-                    context=pickle.dumps(context)
+                    context=base64.b64encode(pickle.dumps(context)).decode('ascii')
                 )
             )
             self._trace.publish(event)

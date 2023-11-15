@@ -11,6 +11,8 @@ import numpy as np
 
 import rospy
 
+import base64
+
 from task_execution_msgs.msg import ExecutionEvent, MonitorMetadata, BeliefMetadata
 
 from task_monitor.execution_tracer import Tracer
@@ -70,7 +72,7 @@ class AbstractFaultMonitor(object):
             type=ExecutionEvent.MONITOR_EVENT,
             monitor_metadata=MonitorMetadata(
                 fault_status=self.fault_status,
-                context=pickle.dumps(context),
+                context=base64.b64encode(pickle.dumps(context)).decode('ascii'),
                 topics=self.topics,
                 services=self.services,
                 actions=self.actions,
@@ -117,7 +119,7 @@ class AbstractBeliefMonitor(object):
                     type=ExecutionEvent.BELIEF_EVENT,
                     belief_metadata=BeliefMetadata(
                         value=value,
-                        context=pickle.dumps(context)
+                        context=base64.b64encode(pickle.dumps(context)).decode('ascii')
                     )
                 )
                 self._trace.publish(trace_event)

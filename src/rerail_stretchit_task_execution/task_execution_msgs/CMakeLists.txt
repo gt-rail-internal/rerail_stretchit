@@ -90,6 +90,7 @@ add_service_files(
 
   # Database
   GetWaypoints.srv
+  GetBeliefs.srv
 
 
   # Remote Strategy

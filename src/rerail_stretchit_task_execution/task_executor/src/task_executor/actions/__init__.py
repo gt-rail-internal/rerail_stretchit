@@ -6,6 +6,7 @@ from __future__ import print_function
 from task_executor.abstract_step import AbstractStep
 
 from .navigation import Navigation
+from .get_beliefs import GetBeliefsAction
 
 class Actions(object):
     """
@@ -47,6 +48,7 @@ class Actions(object):
 # package
 default_actions_dict = {
    'move': Navigation,
+   'get_beliefs': GetBeliefsAction,
 }
 
 def get_default_actions():

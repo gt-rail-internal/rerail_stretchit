@@ -17,7 +17,7 @@ from task_execution_msgs.msg import (RequestAssistanceAction,
                                      ExecuteAction)
 
 from task_monitor.recovery_strategies import RecoveryStrategies
-
+import base64
 
 # The server arbitrates who to send the request to
 
@@ -123,11 +123,10 @@ class TaskMonitorServer(object):
                 if client is not None:
                     client_name, recovery_client = name, client
                     break
-
         # If we do have a valid strategy
         if recovery_client is not None:
             # Unpickle the context
-            goal.context = pickle.loads(goal.context)
+            goal.context = pickle.loads(base64.b64decode(goal.context))
 
             # Figure out the execution goal and resume hints
             execute_goal, resume_hint, resume_context = self._recovery_strategies.get_strategy(goal)
@@ -162,7 +161,7 @@ class TaskMonitorServer(object):
             # Set the result fields
             status = execute_status
             result.resume_hint = resume_hint
-            result.context = pickle.dumps(resume_context)
+            result.context = base64.b64encode(pickle.dumps(resume_context)).decode('ascii')
             result.stats.request_complete = rospy.Time.now()
         else:
             # Otherwise, we are aborting the request and sending it back
@@ -172,7 +171,7 @@ class TaskMonitorServer(object):
 
         # Some extra processing of all results, in case it is needed
         result.stats.request_received = request_received
-
+        print(result)
         # Return based on status
         if status == GoalStatus.SUCCEEDED:
             self._server.set_succeeded(result)
