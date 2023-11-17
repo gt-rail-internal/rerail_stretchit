@@ -1,8 +1,20 @@
 tasks:
   waypoint_navigation:
-    params:
-    - move_location
     steps:
     - action: move
+      params:
+        location: waypoints.navigation_goal
+
+  reposition_recovery_task:
+    params:
+    - origin_move_location
+    - move_location
+
+    steps:
+    - action: reposition
+      params:
+        location: params.origin_move_location
+
+    - action: reposition
       params:
         location: params.move_location

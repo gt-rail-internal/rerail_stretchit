@@ -100,9 +100,9 @@ class RecoveryStrategies(object):
 
         # Get the number of times things have failed
         component_names, num_aborts = RecoveryStrategies.get_number_of_component_aborts(assistance_goal.context)
-        print(component_names, num_aborts)
         
-
+        # Then it's a giant lookup table. The first condition in the lookup
+        # table is for test tasks. Should NEVER be used during the main task
         if (
             assistance_goal.component == 'loop_body_test'
             or assistance_goal.component == 'reposition_recovery_test'
@@ -113,6 +113,7 @@ class RecoveryStrategies(object):
                 resume_context = RecoveryStrategies.create_continue_result_context(assistance_goal.context)
 
             elif assistance_goal.component == 'reposition_recovery_test':
+
                 rospy.loginfo("Recovery: reposition the base")
                 location = RecoveryStrategies.get_last_goal_location(beliefs)
                 assert location is not None, "reposition back to an unknown goal location"
@@ -124,6 +125,30 @@ class RecoveryStrategies(object):
                     name="reposition_recovery_task",
                     params=base64.b64encode(pickle.dumps(goal_params)).decode('ascii')
                 )
+        # Recovery for navigation
+        elif assistance_goal.component == 'move':
+            rospy.loginfo("Recovery: reposition, then retry move to goal pose")
+            component_context = RecoveryStrategies.get_final_component_context(assistance_goal.context)
+            self._actions.move_planar(angular_amount=np.pi / 10)
+            self._actions.wait(duration=0.5)
+            self._actions.move_planar(angular_amount=-1 * np.pi / 10)
+            self._actions.wait(duration=0.5)
+            self._actions.move_planar(linear_amount=-0.1)
+            self._actions.wait(duration=0.5)
+            print("component_context: {}".format(component_context))
+            semantic_location_goal = component_context.get('semantic_location')
+            if semantic_location_goal is not None:
+                goal_params = {
+                    "origin_move_location": "waypoints.origin_for_" + semantic_location_goal,
+                    "move_location": "waypoints." + semantic_location_goal
+                }
+                execute_goal = ExecuteGoal(
+                    name="reposition_recovery_task",
+                    params=base64.b64encode(pickle.dumps(goal_params)).decode('ascii')
+                )
+
+            resume_hint = RequestAssistanceResult.RESUME_CONTINUE
+            resume_context = RecoveryStrategies.create_continue_result_context(assistance_goal.context)
         
         # Return the recovery options
         rospy.loginfo("Recovery:\ngoal: {}\nresume_hint: {}\ncontext: {}".format(

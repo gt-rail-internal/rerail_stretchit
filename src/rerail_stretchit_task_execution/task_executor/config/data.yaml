@@ -16,6 +16,9 @@ waypoints:
   - { x: -0.25, y: -0.35, theta: 0, frame: "schunk_0" }
   dropoff:
   - { x: 0.1, y: 0, theta: 0, frame: "drop_off_1" }
+  #stretchit
+  navigation_goal:
+  - { x: 1.0, y: -1.0, theta: 0, frame: "map" }
   # The following waypoints can be used for a retreat from one of the above
   # stations if the situation calls for it. The format here is "origin_at_" +
   # waypoint name. The values for these keys should never need to be edited
@@ -31,5 +34,6 @@ waypoints:
   - { x: 0, y: 0, theta: -1.57, frame: "map" }
   origin_for_schunk_manipulation:
   - { x: 0, y: 0, theta: 0, frame: "map" }
-  sample_point_1:
-  - { x: 1, y: 1, theta: 1.57, frame: "map" }
+  #stretchit
+  origin_for_navigation_goal:
+  - { x: 0, y: 0, theta: 0, frame: "map" }

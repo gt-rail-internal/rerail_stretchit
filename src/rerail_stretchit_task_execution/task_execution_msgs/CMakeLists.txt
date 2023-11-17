@@ -62,6 +62,7 @@ add_message_files(
   BeliefMetadata.msg
   BeliefKeys.msg
   Statistics.msg
+  InterventionStartEndMetadata.msg
   # Database
   Waypoint.msg
 
@@ -91,6 +92,7 @@ add_service_files(
   # Database
   GetWaypoints.srv
   GetBeliefs.srv
+  GetSemanticLocations.srv
 
 
   # Remote Strategy

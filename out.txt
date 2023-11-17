@@ -1,0 +1,232 @@
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetWaypoints
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetBeliefs
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetSemanticLocations
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_BeliefMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_Waypoint
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_TaskStepMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_Statistics
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_MonitorMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_BeliefKeys
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecutionEvent
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionFeedback
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationResult
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceGoal
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target control_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target nav_msgs_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_nodejs
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionFeedback
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationFeedback
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionGoal
+[  0%] Built target control_msgs_generate_messages_nodejs
+[  0%] Built target control_msgs_generate_messages_cpp
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionAction
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationAction
+[  0%] Built target trajectory_msgs_generate_messages_lisp
+[  0%] Built target trajectory_msgs_generate_messages_eus
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionFeedback
+[  0%] Built target control_msgs_generate_messages_eus
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionGoal
+[  0%] Built target trajectory_msgs_generate_messages_nodejs
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionFeedback
+[  0%] Built target actionlib_generate_messages_nodejs
+[  0%] Built target control_msgs_generate_messages_py
+[  0%] Built target actionlib_generate_messages_cpp
+[  0%] Built target actionlib_generate_messages_py
+[  0%] Built target trajectory_msgs_generate_messages_cpp
+[  0%] Built target actionlib_generate_messages_eus
+[  0%] Built target actionlib_generate_messages_lisp
+[  0%] Built target trajectory_msgs_generate_messages_py
+[ 15%] Built target task_execution_msgs_generate_messages_py
+[ 27%] Built target task_execution_msgs_generate_messages_nodejs
+[ 41%] Built target task_execution_msgs_generate_messages_lisp
+[ 54%] Built target task_execution_msgs_generate_messages_eus
+[ 63%] Built target rerail_stretchit_mapping_generate_messages_nodejs
+[ 76%] Built target task_execution_msgs_generate_messages_cpp
+[ 80%] Built target rerail_stretchit_mapping_generate_messages_py
+[ 86%] Built target rerail_stretchit_mapping_generate_messages_cpp
+[ 92%] Built target rerail_stretchit_mapping_generate_messages_eus
+[ 98%] Built target rerail_stretchit_mapping_generate_messages_lisp
+[ 98%] Built target task_execution_msgs_generate_messages
+[ 98%] Built target rerail_stretchit_mapping_generate_messages
+[ 98%] Linking CXX executable /home/hello-robot/rerail_stretchit/devel/lib/rerail_stretchit_mapping/reposition_server
+[ 98%] Building CXX object rerail_stretchit_mapping/CMakeFiles/navigation_server.dir/src/navigation_server.cpp.o
+Base path: /home/hello-robot/rerail_stretchit
+Source space: /home/hello-robot/rerail_stretchit/src
+Build space: /home/hello-robot/rerail_stretchit/build
+Devel space: /home/hello-robot/rerail_stretchit/devel
+Install space: /home/hello-robot/rerail_stretchit/install
+####
+#### Running command: "make cmake_check_build_system" in "/home/hello-robot/rerail_stretchit/build"
+####
+####
+#### Running command: "make -j8 -l8" in "/home/hello-robot/rerail_stretchit/build"
+####
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetBeliefs
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetWaypoints
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_GetSemanticLocations
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_BeliefMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_TaskStepMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_Waypoint
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_MonitorMetadata
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_Statistics
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecutionEvent
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_BeliefKeys
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceAction
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteActionFeedback
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationActionResult
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_ExecuteFeedback
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceGoal
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_NavigationResult
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceActionFeedback
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target _task_execution_msgs_generate_messages_check_deps_RequestAssistanceResult
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target control_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target nav_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_eus
+[  0%] Built target nav_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target nav_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target nav_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionFeedback
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionResult
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationFeedback
+[  0%] Built target control_msgs_generate_messages_nodejs
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionAction
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionActionFeedback
+[  0%] Built target control_msgs_generate_messages_cpp
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationActionGoal
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_NavigationAction
+[  0%] Built target trajectory_msgs_generate_messages_lisp
+[  0%] Built target _rerail_stretchit_mapping_generate_messages_check_deps_RepositionFeedback
+[  0%] Built target trajectory_msgs_generate_messages_eus
+[  0%] Built target control_msgs_generate_messages_eus
+[  0%] Built target actionlib_generate_messages_nodejs
+[  0%] Built target trajectory_msgs_generate_messages_cpp
+[  0%] Built target trajectory_msgs_generate_messages_nodejs
+[  0%] Built target actionlib_generate_messages_cpp
+[  0%] Built target control_msgs_generate_messages_py
+[  0%] Built target actionlib_generate_messages_py
+[  0%] Built target actionlib_generate_messages_eus
+[  0%] Built target trajectory_msgs_generate_messages_py
+[  0%] Built target actionlib_generate_messages_lisp
+[ 22%] Built target task_execution_msgs_generate_messages_nodejs
+[ 27%] Built target task_execution_msgs_generate_messages_py
+[ 41%] Built target task_execution_msgs_generate_messages_lisp
+[ 63%] Built target task_execution_msgs_generate_messages_cpp
+[ 70%] Built target rerail_stretchit_mapping_generate_messages_cpp
+[ 76%] Built target rerail_stretchit_mapping_generate_messages_nodejs
+[ 82%] Built target rerail_stretchit_mapping_generate_messages_py
+[ 86%] Built target task_execution_msgs_generate_messages_eus
+[ 92%] Built target rerail_stretchit_mapping_generate_messages_lisp
+[ 98%] Built target rerail_stretchit_mapping_generate_messages_eus
+[ 98%] Built target task_execution_msgs_generate_messages
+[ 98%] Built target rerail_stretchit_mapping_generate_messages
+Scanning dependencies of target navigation_server
+[ 98%] Linking CXX executable /home/hello-robot/rerail_stretchit/devel/lib/rerail_stretchit_mapping/reposition_server
+[ 98%] Building CXX object rerail_stretchit_mapping/CMakeFiles/navigation_server.dir/src/navigation_server.cpp.o
+[100%] Linking CXX executable /home/hello-robot/rerail_stretchit/devel/lib/rerail_stretchit_mapping/navigation_server
+Base path: /home/hello-robot/rerail_stretchit
+Source space: /home/hello-robot/rerail_stretchit/src
+Build space: /home/hello-robot/rerail_stretchit/build
+Devel space: /home/hello-robot/rerail_stretchit/devel
+Install space: /home/hello-robot/rerail_stretchit/install
+####
+#### Running command: "make cmake_check_build_system" in "/home/hello-robot/rerail_stretchit/build"
+####
+####
+#### Running command: "make -j8 -l8" in "/home/hello-robot/rerail_stretchit/build"
+####

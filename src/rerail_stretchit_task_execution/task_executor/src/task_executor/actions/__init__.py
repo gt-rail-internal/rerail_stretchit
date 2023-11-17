@@ -5,8 +5,12 @@ from __future__ import print_function
 
 from task_executor.abstract_step import AbstractStep
 
+from .move import MoveAction
 from .navigation import Navigation
 from .get_beliefs import GetBeliefsAction
+from .move_planar import MovePlanarAction
+from .wait import WaitAction
+from .reposition import RepositionAction
 
 class Actions(object):
     """
@@ -47,8 +51,11 @@ class Actions(object):
 # The default actions contain all the action interfaces that are known to this
 # package
 default_actions_dict = {
-   'move': Navigation,
-   'get_beliefs': GetBeliefsAction,
+    'move': Navigation,
+    'get_beliefs': GetBeliefsAction,
+    'move_planar': MovePlanarAction,
+    'wait': WaitAction,
+    'reposition': RepositionAction,
 }
 
 def get_default_actions():

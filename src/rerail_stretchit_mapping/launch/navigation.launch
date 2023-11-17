@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="sim"                 default="false" />
+    <arg name="dynamic_env"         default="true" />
+    <arg name="collision_mapping"   default="true" />
+    <arg name="2d_map"              default="2d_map.yaml" />
+    <arg name="3d_map"              default="3d_map.bt" />
+    <arg name="wp_map"              default="arena_waypoints.yaml" />
+    <arg name="testing"             default="false" />
+
+    <!-- navigation control parameters -->
+    <arg name="angular_P_gain"      default="1.7" />
+    <arg name="angular_I_gain"      default="0.008" />
+    <arg name="angular_D_gain"      default="0.0007" />
+    <arg name="linear_P_gain"       default="1.0" />
+    <arg name="linear_I_gain"       default="0.0" />
+    <arg name="linear_D_gain"       default="0.0" />
+    <arg name="max_odom_rotation"   default="720.0" />
+    <arg name="stall_initial_time"  default="15.0" />
+
+    parameters for enabling testing
+    <param name="test_nav" type="bool" value="$(arg testing)" />
+    <param name="logfile_path" type="str" value="$(find rerail_stretchit_mapping)/log/" />
+
+    <!-- inferred args -->
+    <!-- <arg name="2d_map_path" default="$(find fetchit_mapping)/maps/$(arg 2d_map)" />
+    <arg name="3d_map_path" default="$(find fetchit_mapping)/maps/$(arg 3d_map)" />
+    <arg name="wp_map_path" default="$(find fetchit_mapping)/maps/$(arg wp_map)" /> -->
+
+    <!-- start 2D dynamic obstacle fitlering -->
+    <!-- <include file="$(find fetchit_mapping)/launch/filter_dynamic_obstacles.launch" if="$(arg dynamic_env)"/> -->
+
+    <!-- Start 2D localization -->
+    <!-- <include file="$(find fetchit_mapping)/launch/fetchit_localization_2d.launch" if="$(arg dynamic_env)">
+        <arg name="map_file"                value="$(arg 2d_map_path)" />
+        <arg name="localization_scan_topic" value="/base_scan" />
+    </include>
+    <include file="$(find fetchit_mapping)/launch/fetchit_localization_2d.launch" unless="$(arg dynamic_env)">
+        <arg name="map_file" value="$(arg 2d_map_path)" />
+    </include> -->
+
+    <!-- Publish 3D octomap for collision -->
+    <!-- <include file="$(find fetchit_mapping)/launch/fetchit_octomapping.launch" if="$(arg collision_mapping)">
+        <arg name="node_args"   value="$(arg 3d_map_path)"/>
+        <arg name="mapping"     value="false"/>
+    </include> -->
+
+    <!-- begin static waypoint broadcasting -->
+    <!-- <node pkg="fetchit_mapping" type="waypoint_publisher_node" name="waypoint_publisher_node" >
+        <param name="waypoint_map_filepath" value="$(arg wp_map_path)"/>
+    </node> -->
+
+    <!-- Launch point-to-point navigation -->
+    <!-- <node pkg="fetchit_mapping" type="fetch_go_to_goal" name="navigation_node" output="screen" /> -->
+    <node pkg="rerail_stretchit_mapping" type="navigation_server" name="navigation_server" output="screen" >
+        <param name="k_pw" type="double" value="$(arg angular_P_gain)" />
+        <param name="k_iw" type="double" value="$(arg angular_I_gain)" />
+        <param name="k_dw" type="double" value="$(arg angular_D_gain)" />
+        <param name="max_odom_rotation" type="double" value="$(arg max_odom_rotation)" />
+        <param name="stall_initial_time" type="double" value="$(arg stall_initial_time)" />
+    </node>
+
+    <!-- Launching reposition server -->
+    <node pkg="rerail_stretchit_mapping" type="reposition_server" name="reposition_server" output="screen" >
+        <param name="k_p" type="double" value="$(arg linear_P_gain)" />
+        <param name="k_i" type="double" value="$(arg linear_I_gain)" />
+        <param name="k_d" type="double" value="$(arg linear_D_gain)" />
+        <param name="k_pw" type="double" value="$(arg angular_P_gain)" />
+        <param name="k_iw" type="double" value="$(arg angular_I_gain)" />
+        <param name="k_dw" type="double" value="$(arg angular_D_gain)" />
+        <param name="max_odom_rotation" type="double" value="$(arg max_odom_rotation)" />
+        <param name="stall_initial_time" type="double" value="$(arg stall_initial_time)" />
+    </node>
+
+</launch>
