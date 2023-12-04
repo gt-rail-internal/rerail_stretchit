@@ -9,6 +9,9 @@ The software stack is built in ROS1 for the Stretch RE Robot
 3. Manipulation
 4. Task Executor
 
+##### Important todos
+1. add a git ignore file (Should ignore the cloned repos)
+
 
 ### Setup
 
