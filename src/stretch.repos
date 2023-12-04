@@ -3,3 +3,19 @@ repositories:
     type: git
     url: https://github.com/hello-robot/stretch_ros.git
     version: noetic
+  rerail_stretchit_segmentation:
+    type: git
+    url: https://github.com/gt-rail-internal/rerail_stretchit_segmentation.git
+    version: noetic
+  rerail_stretchit_manipulation:
+    type: git
+    url: https://github.com/gt-rail-internal/rerail_stretchit_manipulation.git
+    version: noetic
+  rerail_stretchit_grasp:
+    type: git
+    url: https://github.com/gt-rail-internal/rerail_stretchit_grasp.git
+    version: noetic
+  rerail_stretchit_task_execution:
+    type: git
+    url: https://github.com/gt-rail-internal/rerail_stretchit_task_execution.git
+    version: noetic
