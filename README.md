@@ -31,6 +31,11 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
     `vcs import < stretch.repos`
 
 4. Install extra dependencies
+    
+    TODO: Add all the dependencies in the setup_ws.sh file [Khalid]
+    All dependencies are mentioned in  setup_scripts/setup_ws.sh 
+
+    // Steps to the run the file
     1. Segmentation Dependencies [TODO : Tofunmi]
     2. Grasping Dependencies [TODO: Abivishaq]
     3. Manipulation Dependencies [TODO: Tony]
@@ -38,9 +43,14 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
 
 5. Build the workspace:
 
+    `source /opt/ros/noetic/setup.bash`
+
     `cd ..`
 
     `catkin_make`
+6. Source the workspace:
+
+    `source ./stable/devel/setup.bash`
 
 6. Setting up all the packages
     1. [stretch_ros](https://github.com/hello-robot/stretch_ros):
