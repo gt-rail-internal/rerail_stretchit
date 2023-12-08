@@ -12,6 +12,7 @@ sudo apt-get install -y \
         nano \
         python3-catkin-tools \
         sox \
+        python-matplotlib \
         vim
 
 sudo -H pip3 install -U \
