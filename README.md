@@ -15,7 +15,16 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
 
 > NOTE: All the commands assume that you are in the workspace root. i.e. rerail_stretchit
 
-1. [Install vcstool](https://github.com/dirk-thomas/vcstool#how-to-install-vcstool) 
+1. Install Dependencies 
+
+    `cd setup_scripts/`
+
+    `chmod +x setup_ws.sh`
+
+    `./setup_ws.sh`
+
+    `cd ..`
+
 2. Validate the repos:
 
     `cd src`
@@ -25,7 +34,7 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
 3. Clone all the repos: 
 
     `vcs import < stretch.repos`
-
+    
 4. Install extra dependencies
     
     TODO: Add all the dependencies in the setup_ws.sh file [Khalid]
