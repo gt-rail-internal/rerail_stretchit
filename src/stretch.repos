@@ -19,3 +19,7 @@ repositories:
     type: git
     url: https://github.com/gt-rail-internal/rerail_stretchit_task_execution.git
     version: main
+  rerail_stretchit_mapping:
+    type: git
+    url: https://github.com/gt-rail-internal/rerail_stretchit_mapping.git
+    version: main

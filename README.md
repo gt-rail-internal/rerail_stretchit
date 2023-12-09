@@ -4,14 +4,10 @@ ROS Workspace for Stretch Robot 2023
 The software stack is built in ROS1 for the Stretch RE Robot
 
 ##### It has 4 main components
-1. Scene Segmentation
-2. Grasping objects
-3. Manipulation
-4. Task Executor
-
-##### Important todos
-1. add a git ignore file (Should ignore the cloned repos)
-
+1. [Scene Segmentation](https://github.com/gt-rail-internal/rerail_stretchit_segmentation)
+2. [Grasping objects](https://github.com/gt-rail-internal/rerail_stretchit_grasp)
+3. [Manipulation](https://github.com/gt-rail-internal/rerail_stretchit_manipulation)
+4. [Task Executor](https://github.com/gt-rail-internal/rerail_stretchit_task_execution)
 
 ### Setup
 
@@ -52,7 +48,7 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
 
     `source ./stable/devel/setup.bash`
 
-6. Setting up all the packages
+6. Setting up the stretch_ros package
     1. [stretch_ros](https://github.com/hello-robot/stretch_ros):
     
         This is the official repository provided by Hello Robot for the Stretch Robot. We have already cloned this in the previous steps.
@@ -86,7 +82,15 @@ We will be using the vcstool to setup this ROS workspace. before you begin, plea
             [ERROR] [1695165009.479201]: The fit error is very high: 0.05577298122727921 > 0.05 (fit_error > fit_error_threshold)
             ```
 
+7. Start all the ros nodes using the stretchit launch file
+```bash
+roslaunch task_executor stretchit.launch
+```
 
+8. Run the demo task
+```bash
+rosrun task_executor run_task.py demo_task
+```
 
 
 
