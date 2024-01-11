@@ -49,3 +49,11 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# Clone repos
+/src/rerail_stretchit_grasp
+/src/rerail_stretchit_manipulation
+/src/rerail_stretchit_mapping
+/src/rerail_stretchit_segmentation
+/src/rerail_stretchit_task_execution
+/src/stretch_ros
